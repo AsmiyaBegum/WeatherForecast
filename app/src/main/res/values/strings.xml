@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
+    <string name="lat_long_format">Lat - %1\$s, Long - %2\$s</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+
+
+    // Image Description
+    <string name="close_icon">Close Icon</string>
 </resources>

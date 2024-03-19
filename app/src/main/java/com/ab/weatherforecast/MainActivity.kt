@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ab.weatherforecast.ui.mapscreen.MapScreen
 import com.ab.weatherforecast.ui.theme.WeatherForecastTheme
+import com.ab.weatherforecast.ui.weatherDetail.WeatherDetailScreen
 import org.osmdroid.config.Configuration
 
 
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    MapScreen()
+//                    MapScreen()
+                    WeatherDetailScreen()
                 }
             }
         }
