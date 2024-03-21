@@ -80,7 +80,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.osmdroid.android)
-    implementation (libs.mpandroidchart)
     implementation(libs.play.services.location)
 
 
@@ -120,11 +119,6 @@ dependencies {
     // Google Font
     implementation(libs.androidx.ui.text.google.fonts)
 
-    // Lottie
-    val lottieVersion = "6.0.0"
-    implementation("com.airbnb.android:lottie-compose:$lottieVersion")
 
-    // coil
-    implementation(libs.coil)
 
 }

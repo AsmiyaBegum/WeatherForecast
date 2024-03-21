@@ -39,13 +39,6 @@ fun WeatherDetail(weatherInfo: WeatherInfo,navController: NavController){
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Background image
-        Image(
-            painter = painterResource(id = R.drawable.bg6),
-            contentDescription = null, // Provide a proper content description
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
 
         BottomContent(weatherInfo,navController, iFullScreen = true){
 
