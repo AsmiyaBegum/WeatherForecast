@@ -33,6 +33,7 @@ import com.ab.weatherforecast.R
 import com.ab.weatherforecast.ui.weatherDetail.LineChart
 import com.ab.weatherforecast.ui.weatherDetail.WeatherScreen
 import com.ab.weatherforecast.utils.roundTo
+import java.util.Locale
 
 data class HourlyForecastData(
     val weatherType: String,
@@ -108,7 +109,7 @@ fun HourlyForecastItem(data: HourlyForecastData,isFahrenheit: Boolean) {
         )
 
         Text(
-            text = type
+            text = "($type)"
         )
     }
 }
