@@ -20,9 +20,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
+import com.ab.weatherforecast.utils.roundTo
 
 
 sealed class TemperatureCategory {
@@ -31,10 +33,10 @@ sealed class TemperatureCategory {
     object Hot : TemperatureCategory()
 }
 
-fun categorizeTemperature(temperature: Int): TemperatureCategory {
+fun categorizeTemperature(temperature: Double): TemperatureCategory {
     return when {
-        temperature < 10 -> TemperatureCategory.Cold
-        temperature in 10..25 -> TemperatureCategory.Mild
+        temperature < 10.0 -> TemperatureCategory.Cold
+        temperature in 10.0..25.0 -> TemperatureCategory.Mild
         else -> TemperatureCategory.Hot
     }
 }
@@ -48,40 +50,51 @@ fun getIconForTemperatureCategory(category: TemperatureCategory): Int {
 }
 
 @Composable
-fun AverageTemperature() {
-    var temperature by remember { mutableStateOf(250) } // Example temperature
+fun AverageTemperature(temperature: Pair<Double,Double>, isFahrenheit : (Boolean) -> (Unit)) {
+//    var temperature by remember { mutableStateOf(temperature) } // Example temperature
     var isFahrenheit by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Top) {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(bottom = 25.dp), verticalArrangement = Arrangement.Top) {
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(end = 16.dp),
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.End
         ) {
             Text(
                 text = "°C",
-                color = colorResource(id = R.color.white),
-                fontSize = 16.sp,
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { isFahrenheit = false }
+                modifier = Modifier
+                    .clickable {
+                        isFahrenheit = false
+                    }
                     .align(Alignment.CenterVertically)
             )
 
             Switch(
                 checked = isFahrenheit,
-                onCheckedChange = { isFahrenheit = it },
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                onCheckedChange = {
+                    isFahrenheit = it
+                    isFahrenheit(it)
+                                  },
+                modifier = Modifier
+                    .padding(start = 8.dp, end = 8.dp)
                     .align(Alignment.CenterVertically)
 
             )
 
             Text(
                 text = "°F",
-                fontSize = 16.sp,
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = colorResource(id = R.color.white),
-                modifier = Modifier.clickable { isFahrenheit = true }
+                modifier = Modifier
+                    .clickable {
+                        isFahrenheit = true
+                    }
                     .align(Alignment.CenterVertically)
 
             )
@@ -90,27 +103,39 @@ fun AverageTemperature() {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
         ) {
 
             Image(
-                painter = painterResource(id = getIconForTemperatureCategory(categorizeTemperature(temperature))),
+                painter = painterResource(id = getIconForTemperatureCategory(categorizeTemperature(temperature.second))),
                 contentDescription = null, // Provide a proper content description
-                modifier = Modifier.size(160.dp).padding(start = 20.dp, end = 8.dp, top = 4.dp)
+                modifier = Modifier
+                    .size(160.dp)
+                    .padding(start = 20.dp, end = 8.dp)
             )
 
-            Text(
-                text = if (isFahrenheit) "${convertToFahrenheit(temperature)}°F" else "$temperature°C",
-                fontSize = 48.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(end = 25.dp, top = 16.dp)
-                    .align(Alignment.CenterVertically)
-            )
+            Column(modifier = Modifier
+                .padding(start =8.dp,end = 25.dp)
+                .align(Alignment.CenterVertically)
+            ) {
+                Text(
+                    text = if (isFahrenheit) "Min : ${convertToFahrenheit(temperature.first).roundTo(2)}°F" else "Min : ${temperature.first.roundTo(2)}°C",
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+
+                )
+
+                Text(
+                    text = if (isFahrenheit) "Max : ${convertToFahrenheit(temperature.second).roundTo(2)}°F" else "Max : ${temperature.second.roundTo(2)}°C",
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+
 
         }
     }
 }
 
-fun convertToFahrenheit(celsius: Int): Int {
+fun convertToFahrenheit(celsius: Double): Double {
     return (celsius * 9 / 5) + 32
 }

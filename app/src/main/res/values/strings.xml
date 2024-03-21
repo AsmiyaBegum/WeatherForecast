@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
-    <string name="lat_long_format">Lat - %1\$s, Long - %2\$s</string>
+    <string name="lat_long_format">Lat : %1\$s, Long : %2\$s</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
-
+    <string name="trusted">TRUSTED</string>
+    <string name="weather">WEATHER</string>
+    <string name="forecast">FORECAST</string>
+    <string name="temperature_value_in_celsius">%1$s°</string>
+    <string name="app_desc">Get to know your weather maps\nand radar precipitation forecast</string>
+    <string name="get_started">Get Started</string>
 
     // Image Description
     <string name="close_icon">Close Icon</string>
+    <string name="add_bookmark">Add Bookmark</string>
 </resources>

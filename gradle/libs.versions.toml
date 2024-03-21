@@ -11,6 +11,13 @@ composeBom = "2023.08.00"
 mpandroidchart = "v3.1.0"
 osmdroidAndroid = "6.1.14"
 material3Android = "1.2.1"
+playServicesLocation = "21.2.0"
+runtime = "1.6.1"
+retrofit = "2.9.0"
+coroutines = "1.5.2"
+uiTextGoogleFonts = "1.6.3"
+coil = "2.4.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,7 +37,24 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
 
 osmdroid-android = { module = "org.osmdroid:osmdroid-android", version.ref = "osmdroidAndroid" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 #androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
+
+androidx-livedata = {group = "androidx.lifecycle",name = "lifecycle-livedata-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "runtime" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtime" }
+
+
+retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref =  "retrofit"}
+retrofit-gson-converter = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref =  "retrofit"}
+retrofit-coroutine-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
+retrofit-coroutine-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines"}
+
+androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
+
+
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
