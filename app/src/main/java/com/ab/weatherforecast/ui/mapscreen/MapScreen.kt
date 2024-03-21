@@ -169,7 +169,11 @@ fun MapScreen(locationPermissionGranted: MutableState<Boolean>, navController: N
                         modifier = Modifier.align(Alignment.CenterEnd),
                         viewModel
                     ) {
-                        navController.navigate("favouriteLocationScreen")
+                        navController.navigate("favouriteLocationScreen"){
+                            popUpTo("mapScreen"){
+                                inclusive = false
+                            }
+                        }
                     }
                 }
 
@@ -183,7 +187,11 @@ fun MapScreen(locationPermissionGranted: MutableState<Boolean>, navController: N
                 WeatherView(weather,viewModel, navController ,onDismiss = {
                     viewModel.clearWeatherDetail()
                 }, onExpandClick = {
-                    navController.navigate("weatherDetail/${Gson().toJson(it)}")
+                    navController.navigate("weatherDetail/${Gson().toJson(it)}"){
+                        popUpTo("mapScreen"){
+                            inclusive = false
+                        }
+                    }
                 })
             }
         }

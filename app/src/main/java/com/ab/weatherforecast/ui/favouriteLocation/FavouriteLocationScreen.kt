@@ -79,8 +79,6 @@ fun FavouriteLocationScreen(viewModel: MapScreenViewModel = hiltViewModel(),navC
                 color = Color.Transparent
             ) {
 
-
-
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -90,7 +88,11 @@ fun FavouriteLocationScreen(viewModel: MapScreenViewModel = hiltViewModel(),navC
                     items(locations) { location ->
                         FavouriteLocationItem(location = location){
                             if(Utils.checkInternetConnection(context)){
-                                navController.navigate("mapScreen/${location.lat}/${location.lon}")
+                                navController.navigate("mapScreen/${location.lat}/${location.lon}"){
+                                    popUpTo("mapScreen"){
+                                        inclusive = false
+                                    }
+                                }
                             }
                         }
                     }

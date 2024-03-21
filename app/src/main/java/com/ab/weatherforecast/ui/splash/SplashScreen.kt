@@ -148,7 +148,11 @@ fun SplashScreenContent(navController: NavController){
             modifier = Modifier
                 .fillMaxWidth()
         ){
-            navController.navigate("mapScreen")
+            navController.navigate("mapScreen"){
+                popUpTo("splash"){
+                    inclusive = true
+                }
+            }
 
         }
 
